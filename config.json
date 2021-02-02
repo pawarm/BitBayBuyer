@@ -1,0 +1,15 @@
+{
+  "api_key": "xxx",
+  "pairs": [
+    {
+      "days": 3,
+      "pair": "BTC/PLN",
+      "amount": 30
+    },
+    {
+      "days": 2,
+      "pair": "ETH/PLN",
+      "amount": 20
+    }
+  ]
+}
