@@ -1,15 +1,15 @@
 {
-  "api_key": "xxx",
-  "pairs": [
-    {
+  "apiKey": "PUBLIC_KEY",
+  "secret": "PRIVATE_KEY",
+  "pairs": {
+    "BTC/PLN": {
       "days": 3,
-      "pair": "BTC/PLN",
-      "amount": 30
+      "amount": 10
     },
-    {
+    "ETH/PLN": {
       "days": 2,
       "pair": "ETH/PLN",
-      "amount": 20
+      "amount": 10
     }
-  ]
+  }
 }

@@ -5,17 +5,20 @@ import ccxt
 
 class DcaJobConfig:
     def __init__(self):
-        self.bitbay = ccxt.bitbay()
+        with open('config.json') as config_file:
+            self.config_dict = json.load(config_file)
+        self.bitbay = ccxt.bitbay({
+            'apiKey': self.config_dict['apiKey'],
+            'secret': self.config_dict['secret'],
+        })
         self.markets = self.bitbay.load_markets()
 
-    def print_price(self, pair):
-        print(self.bitbay.market_id(pair))
+    def buy_for_current_price(self, pair):
+        current_price = self.bitbay.fetch_order_book(pair)['asks'][0][0]
+        amount_to_buy_not_precise = self.config_dict['pairs'][pair]['amount'] / current_price
+        amount_to_buy = ccxt.decimal_to_precision(amount_to_buy_not_precise, precision=10)
+        self.bitbay.create_market_buy_order(pair, amount_to_buy)
 
     def prepare_jobs(self):
-        with open('config.json',) as config_file:
-            config_json = json.load(config_file)
-            api = config_json['api_key']
-            for pair in config_json['pairs']:
-                schedule.every(5).seconds.do(self.print_price, pair['pair'])
-            # for x in markets:
-            #     print(f"{x}: {markets[x]}")
+        for pair in self.config_dict['pairs']:
+            schedule.every(pair['days']).days.do(self.buy_for_current_price, pair)
