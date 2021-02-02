@@ -1,9 +1,10 @@
 import time
 import schedule
-from dca_job_config import prepare_jobs
+from dca_job_config import DcaJobConfig
 
 if __name__ == '__main__':
-    prepare_jobs()
+    job_config = DcaJobConfig()
+    job_config.prepare_jobs()
     while True:
         schedule.run_pending()
         time.sleep(1)
