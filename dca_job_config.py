@@ -22,3 +22,4 @@ class DcaJobConfig:
     def prepare_jobs(self):
         for pair in self.config_dict['pairs']:
             schedule.every(pair['days']).days.do(self.buy_for_current_price, pair)
+            schedule.every(self.config_dict['pairs'][pair]['days']).days.do(self.buy_for_current_price, pair)
