@@ -2,13 +2,14 @@
   "apiKey": "PUBLIC_KEY",
   "secret": "PRIVATE_KEY",
   "pairs": {
-    "BTC/PLN": {
-      "days": 3,
-      "amount": 10
+    "PAIR_NAME": {
+      "days": "DAYS_NUMBER_AS_INTEGER",
+      "at": "OPTIONAL_HOUR_IN_HH:MM_FORMAT",
+      "amount": "AMOUNT_IN_BASE_CURRENCY_AS_INTEGER"
     },
-    "ETH/PLN": {
+    "BTC/PLN": {
       "days": 2,
-      "pair": "ETH/PLN",
+      "at": "10:30",
       "amount": 10
     }
   }
