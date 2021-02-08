@@ -4,6 +4,7 @@ import ccxt
 import logging
 import time
 import re
+from ccxt.base.errors import RequestTimeout
 from datetime import datetime
 
 
@@ -58,7 +59,7 @@ class DcaJobConfig:
         current_price = self.bitbay.fetch_order_book(pair)['asks'][0][0]
         logging.debug(f"Current price: {current_price}")
         amount_to_buy_not_precise = self.config_dict['pairs'][pair]['amount'] / current_price
-        precision = self.markets['pair']['precision']['amount']
+        precision = self.markets[pair]['precision']['amount']
         amount_to_buy = ccxt.decimal_to_precision(amount_to_buy_not_precise, precision=precision)
         logging.debug(f"Amount to buy: {amount_to_buy}")
         base = self.markets[pair]['base']
@@ -69,8 +70,8 @@ class DcaJobConfig:
                 self.bitbay.create_market_buy_order(pair, amount_to_buy)
                 logging.info(f"Order created to buy {amount_to_buy} {base} at price {current_price}{quote}")
                 break
-            except ccxt.base.errors.RequestTimeout as e:
-                logging.exception(f"Exception occured: {e}")
+            except RequestTimeout as e:
+                logging.exception(f"Exception occurred: {e}")
                 if r != retries - 1:
                     logging.info(f"Waiting a few seconds and retrying: {r}/{retries}")
                     time.sleep(3)
