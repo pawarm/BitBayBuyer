@@ -29,7 +29,8 @@ else:
         level=loglevel)
 
 if __name__ == '__main__':
-    logging.info("\nBitBayBuyer is starting...")
+    logging.info("")
+    logging.info("BitBayBuyer is starting...")
     if args.config:
         dca_job_config = DcaJobConfig(args.config)
     else:
