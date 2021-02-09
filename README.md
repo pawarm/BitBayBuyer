@@ -2,7 +2,7 @@ BitBayBuyer
 =
 Open-source python bot to automatically buy crypto on BitBay using the DCA strategy
 
-##General
+## General
 
 This small app can be used to create orders to buy various cryptocurrencies on [BitBay](https://bitbay.net/pl). 
 
@@ -11,13 +11,13 @@ It can be configured so that orders for each currency are made at various times,
 Please note that your bitbay account needs to have enough funds to complete the purchase.
 
 
-##Requirements
+## Requirements
 For the script to work properly, it should run on a Unix system that has python3 installed. 
 The requirements for additional modules are included in the requirements.txt file, and you can check them out below:
 * [ccxt](https://github.com/ccxt/ccxt)
 * [schedule](http://github.com/dbader/schedule)
 
-##Installation
+## Installation
 To install the script, download the latest version from the repository:
 
 ```git clone https://github.com/pawarm/BitBayBuyer.git```
@@ -30,7 +30,7 @@ Download the necessary modules (it may take some time):
 
 ```python3 -m pip install -r requirements.txt```
 
-##Configuration
+## Configuration
 If everything went ok, you should be able to run `python3 main.py`, but you will get an error about invalid configuration.
 
 To configure the script, edit the `config_template.json` file.
@@ -47,7 +47,7 @@ Optionally, you can add the time of purchase, if you do not specify it, the scri
 It is best to save the file with the configuration under the name `config.json`.
 
 
-##Launching
+## Launching
 If everything has been configured, you can proceed to run the script
 ```
 python3 main.py [-h] [-f [FILENAME]] [-v] [-c CONFIG]
@@ -56,7 +56,7 @@ python3 main.py [-h] [-f [FILENAME]] [-v] [-c CONFIG]
     -v, --verbose                           Increase log verbosity
     -c CONFIG, --config CONFIG              Read config from custom filename
 ```
-###Nohup
+### Nohup
 Its best to run the script from docker, or nohup like this:
 ```
 nohup python3 main.py &
